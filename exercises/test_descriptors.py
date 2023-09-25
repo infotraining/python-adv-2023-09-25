@@ -1,7 +1,25 @@
 
 import pytest
 
+class PositiveValueValidator:
+    def __set_name__(self, owner, name):
+        self.private_name = '_' + name
+
+    def __get__(self, instance, owner_class=None):
+        value = getattr(instance, self.private_name)
+        return value
+
+    def __set__(self, instance, value):
+        if value >= 0:
+            setattr(instance, self.private_name, value)
+        else:
+            raise AttributeError("Cannot set negative integer")
+
 class Person:
+
+    age = PositiveValueValidator()    
+    height = PositiveValueValidator()
+
     def __init__(self, name: str, age: int, height: int) -> None:
         self.name = name
         self.age = age
