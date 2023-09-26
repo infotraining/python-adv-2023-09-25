@@ -7,7 +7,16 @@ def tokenize_file(path: str) -> List[str]:
     return words
 
 def get_most_common(words: List[str]) -> List[Tuple[str, int]]:
-    """TODO"""
+    # concordance = defaultdict(int)
 
+    # for word in words:
+    #     concordance[word] += 1
+
+    # result = list(concordance.items())
+    # result.sort(key=lambda kv: kv[1], reverse=True)
+    # return result[:10]
+
+    concordance = Counter(words)
+    return concordance.most_common(10)
 
 print(get_most_common(tokenize_file('holmes.txt')))   
