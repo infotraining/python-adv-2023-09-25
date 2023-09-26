@@ -3,20 +3,22 @@ import pytest
 from dataclasses import dataclass
 import dataclasses
 
+@dataclass(frozen=True)
 class Vector:
+    x: float
+    y: float
 
-    def __init__(self, x: float, y: float):
-        self.x = x
-        self.y = y
+    # def __init__(self, x: float, y: float):
+    #     self.x = x
+    #     self.y = y
 
-    def __eq__(self, other: 'Vector') -> bool:
-        return (self.x, self.y) == (other.x, other.y)
+    # def __eq__(self, other: 'Vector') -> bool:
+    #     return (self.x, self.y) == (other.x, other.y)
 
     def __add__(self, other: 'Vector') -> 'Vector':
         return Vector(self.x + other.x, self.y + other.y)
 
     def __abs__(self) -> float:
-        #return (math.sqrt(pow(self.x, 2) + pow(self.y, 2)))
         return math.hypot(self.x, self.y)
     
     def __mul__(self, other: float) -> 'Vector':
@@ -25,18 +27,18 @@ class Vector:
     def __bool__(self):
         return bool(self.x or self.y)
 
-    def __repr__(self):
-        return f"Vector(x={self.x!r}, y={self.y!r})"
+    # def __repr__(self):
+    #     return f"Vector(x={self.x!r}, y={self.y!r})"
     
-    def __str__(self):
-        return f"Vector(x={self.x}, y={self.y})"
+    # def __str__(self):
+    #     return f"Vector(x={self.x}, y={self.y})"
 
     @property
     def angle(self) -> float:
         return math.atan2(self.y, self.x)
     
-    def __hash__(self):
-        return hash((self.x, self.y))
+    # def __hash__(self):
+    #     return hash((self.x, self.y))
     
     def __iter__(self):
         return iter((self.x, self.y))
