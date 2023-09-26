@@ -30,8 +30,8 @@ class Vector:
     # def __repr__(self):
     #     return f"Vector(x={self.x!r}, y={self.y!r})"
     
-    # def __str__(self):
-    #     return f"Vector(x={self.x}, y={self.y})"
+    def __str__(self):
+        return f"Vector with coordinates: (x={self.x}, y={self.y})"
 
     @property
     def angle(self) -> float:
