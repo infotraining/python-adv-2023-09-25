@@ -9,9 +9,9 @@ def test_something():
 
 @pytest.fixture
 def greetings():
-    print('HELLO!')
+    print('Setup!')
     yield
-    print('\nGOODBYE')
+    print('\nTeardown')
 
 
 @pytest.fixture(scope="class")
